@@ -2,10 +2,8 @@ class Game
   def initialize(slovo)
     @letters = get_letters(slovo)
     @errors = 0
-
     @good_letters = []
     @bad_letters = []
-
     @status = 0
   end
 
@@ -13,7 +11,10 @@ class Game
     if slovo == nil || slovo == ""
       abort "Загадано пустое слово, нечего отгадывать. Закрываемся"
     end
-    slovo.encode('UTF-8').split("")
+
+    slovo = Unicode::upcase(slovo)
+
+    slovo.split("")
   end
 
   def status
@@ -36,11 +37,8 @@ class Game
       (bukva == "Й" && @letters.include?("И"))
 
       @good_letters << bukva
-      if @good_letters.uniq.sort == @letters.uniq.sort
-        @status = 1
-      end
 
-      if bukva == "Е"
+      if bukva == "Ё"
         @good_letters << "Ё"
       end
 
@@ -56,8 +54,13 @@ class Game
         @good_letters << "И"
       end
 
-    else
+      if (@letters - @good_letters).empty?
+        @status = 1
+      else
+        @status = 0
+      end
 
+    else
       if bukva == "Е"
         @bad_letters << "Ё"
       end
@@ -75,8 +78,8 @@ class Game
       end
 
       @bad_letters << bukva
-      @errors += 1
 
+      @errors += 1
       if @errors >= 7
         @status = -1
       end
@@ -84,13 +87,12 @@ class Game
   end
 
   def ask_next_letter
+    puts "\nВведите следующую букву"
     letter = ""
 
-    while letter == "" || letter.length > 1
-      puts "\nВведите следующую букву"
-      letter = Unicode::upcase(STDIN.gets.encode("UTF-8").chomp)
+    while letter == "" || letter.size > 1
+      letter = Unicode::upcase(STDIN.gets.chomp)
     end
-
     next_step(letter)
   end
 
@@ -107,6 +109,6 @@ class Game
   end
 
   def bad_letters
-    @bad_letters.uniq
+    @bad_letters
   end
 end
