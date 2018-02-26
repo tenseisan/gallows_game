@@ -14,7 +14,6 @@ class ResultPrinter
       rescue SystemCallError
         @status_image << "\n [ изображение не найдено ] \n"
       end
-
       counter += 1
     end
   end
@@ -25,7 +24,6 @@ class ResultPrinter
 
   def print_status(game)
     cls
-
     puts
     puts "Слово: #{get_word_for_print(game.letters, game.good_letters)}"
     puts "Ошибки: #{game.bad_letters.join(", ")}"
@@ -56,7 +54,6 @@ class ResultPrinter
         result += "__ "
       end
     end
-
     result
   end
 
