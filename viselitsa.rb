@@ -8,19 +8,22 @@ if Gem.win_platform?
 end
 
 require "unicode"
-require_relative "game"
-require_relative "result_printer"
-require_relative "word_reader"
+require_relative 'lib/game'
+require_relative 'lib/word_reader'
+require_relative 'lib/result_printer'
 
-puts "Игра виселица. Версия 4\n"
+VERSION =  "Игра виселица. Версия 4.1\n"
 sleep 1
 
-printer = ResultPrinter.new
 word_reader = WordReader.new
 words_file_name = File.dirname(__FILE__) + "/data/words.txt"
 game = Game.new(word_reader.read_from_file(words_file_name))
+game.version = VERSION
+printer = ResultPrinter.new(game)
 
-while game.status == 0
+
+
+while game.in_progress?
   printer.print_status(game)
   game.ask_next_letter
 end
