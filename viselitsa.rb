@@ -7,7 +7,7 @@ if Gem.win_platform?
   end
 end
 
-require "unicode"
+require 'unicode'
 require_relative 'lib/game'
 require_relative 'lib/word_reader'
 require_relative 'lib/result_printer'
