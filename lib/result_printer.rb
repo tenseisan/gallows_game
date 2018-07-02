@@ -1,3 +1,4 @@
+# Display results
 class ResultPrinter
   def initialize(game)
     @status_image = []
@@ -8,11 +9,11 @@ class ResultPrinter
     while counter <= game.max_errors
       file_name = current_path + "/../image/#{counter}.txt"
       begin
-        file = File.new(file_name, "r:UTF-8")
+        file = File.new(file_name, 'r:UTF-8')
         @status_image << file.read
         file.close
       rescue SystemCallError
-        @status_image << "\n [ изображение не найдено ] \n"
+        @status_image << '\n [ изображение не найдено ] \n'
       end
       counter += 1
     end
@@ -27,18 +28,18 @@ class ResultPrinter
     puts game.version
     puts
     puts "Слово: #{get_word_for_print(game.letters, game.good_letters)}"
-    puts "Ошибки: #{game.bad_letters.join(", ")}"
+    puts "Ошибки: #{game.bad_letters.join(', ')}"
 
     print_viselitsa(game.errors)
 
     if game.lost?
       puts
-      puts "Вы проиграли :("
-      puts "Загаданное слово было: " + game.letters.join("")
+      puts 'Вы проиграли :('
+      puts 'Загаданное слово было: ' + game.letters.join('')
       puts
     elsif game.won?
       puts
-      puts "Поздравляем, вы выиграли!"
+      puts 'Поздравляем, вы выиграли!'
       puts
     else
       puts "У вас осталось ошибок: #{game.errors_left}"
@@ -46,19 +47,19 @@ class ResultPrinter
   end
 
   def get_word_for_print(letters, good_letters)
-    result = ""
+    result = ''
 
     letters.each do |item|
       if good_letters.include?(item)
-        result += item + " "
+        result += item + ' '
       else
-        result += "__ "
+        result += '__ '
       end
     end
     result
   end
 
   def cls
-    system("clear") || system("cls")
+    system('clear') || system('cls')
   end
 end

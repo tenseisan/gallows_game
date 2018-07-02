@@ -5,14 +5,14 @@
 ### Установка
 
 ```
-sudo apt-get install ruby-full    // установите руби
-bundle install                    // установите нужные гемы
+sudo apt-get install ruby-full
+bundle install
 ```
 
 ## Запуск игры
 
 ```
-bundle exec ruby viselitsa.rb    // Выполните команду из папки с игрой
+ruby viselitsa.rb
 ```
 
 ## Настройка игры

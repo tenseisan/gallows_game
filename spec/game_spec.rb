@@ -2,24 +2,19 @@ require_relative '../lib/game.rb'
 require 'unicode'
 
 describe 'Game' do
-
   it 'user wins the game' do
-    # Загадываем слово
+    # Guess word
     game = Game.new('ХЕХ')
 
-    # Убедимся, что в начале игры статус — игра в процессе
+    # Status in progress?
     expect(game.status).to eq :in_progress
-
-    # Удачно отгадаем несколько букв, симулируя действия игрока
+    # Guess right letter
     game.next_step 'Х'
     game.next_step 'Е'
-
-
-    # Теперь изучем состояние экземпляра game: количество ошибок и статус
+    # Check status and errors
     expect(game.errors).to eq 0
     expect(game.status).to eq :won
   end
-
 
   it 'user lose the game' do
     game = Game.new('МУДАК')
@@ -36,6 +31,5 @@ describe 'Game' do
 
     expect(game.errors).to eq 7
     expect(game.status).to eq :lost
-
   end
-  end
+end
