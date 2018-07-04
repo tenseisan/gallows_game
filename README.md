@@ -5,14 +5,13 @@
 ### Установка
 
 ```
-sudo apt-get install ruby-full
 bundle install
 ```
 
 ## Запуск игры
 
 ```
-ruby viselitsa.rb
+bundle exec ruby viselitsa.rb
 ```
 
 ## Настройка игры
