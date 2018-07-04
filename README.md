@@ -18,7 +18,7 @@ bundle exec ruby viselitsa.rb
 - Добавить слова или загадать слово можно через файл words.txt в папке /data
 - Быстро завершить игру можно комбинацией ctrl+c
 
-![how to run](https://i.imgur.com/INcUkbz.gif)
+![how to run](https://i.imgur.com/3VtI01q.gifv)
 ## Автор
 
 * **Dmitriy Malyshev** - *Course Work* - [Tenseisan](https://github.com/tenseisan)
